@@ -1,3 +1,3 @@
-sample_num = 2
-timeout = 2
+sample_num = 10
+timeout = 1
 use_hash = True

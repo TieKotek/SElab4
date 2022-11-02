@@ -16,22 +16,24 @@ if __name__ == '__main__':
     i_writer = csv.writer(inequal)
     e_writer.writerow(["file1", "file2"])
     i_writer.writerow(["file1", "file2"])
+    pwd = os.getcwd()
     for dir in os.listdir('input'):
-        if not os.path.isdir('input/' + dir):
+        if not os.path.isdir(os.path.join(pwd, 'input/' + dir)):
             continue
-        sample_list = sample_generator('input/' + dir + '/stdin_format.txt' , sample_num)
+        sample_list = sample_generator(os.path.join(pwd, 'input/' + dir + '/stdin_format.txt') , sample_num)
         result_table  = []
-        print("Working on " + 'input/' + dir)
-        for f in os.listdir('input/' + dir):
+        print("Working on " + pwd +'/input/' + dir)
+        os.chdir(os.path.join(pwd, 'input/' + dir))
+        for f in os.listdir():
             if (f.endswith('.cpp')):
-                result_table.append(execute('input/' + dir + '/' + f, sample_list))
+                result_table.append(execute(f, sample_list))
 
         for i in range(len(result_table)):
             for j in range(i + 1, len(result_table)):
                 if (result_table[i]["output"] == result_table[j]["output"]):
-                    e_writer.writerow([result_table[i]["name"], result_table[j]["name"],])
+                    e_writer.writerow([os.path.join('input', dir, result_table[i]["name"]), os.path.join('input', dir, result_table[j]["name"])])
                 else: 
-                    i_writer.writerow([result_table[i]["name"], result_table[j]["name"],])
+                    i_writer.writerow([os.path.join('input', dir, result_table[i]["name"]), os.path.join('input', dir, result_table[j]["name"])])
     equal.close()
     inequal.close()
     if (os.name == 'nt'):

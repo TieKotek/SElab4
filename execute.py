@@ -1,17 +1,20 @@
 import subprocess
 import json
+import os
 from config import *
 from hashlib import sha256
 
 
 def execute(file_path, sample_list):
     output_list = []
-    compile_result = subprocess.run(['g++', file_path], text=True, shell=True, stderr=subprocess.DEVNULL)
+    compile_result = subprocess.run(['g++', file_path], text=True, stderr=subprocess.DEVNULL)
     for sample in sample_list:
         output = {}
         if compile_result.returncode == 0:
             try:
-                run_result = subprocess.run(['./a'], text=True, input=sample, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+                if os.name == 'nt':
+                    run_result = subprocess.run(['./a.exe'], text=True, input=sample, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)    
+                else: run_result = subprocess.run(['./a.out'], text=True, input=sample, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
                 if run_result.returncode == 0:
                     output["status"] = "AC"
                     output["output"] = run_result.stdout
