@@ -17,6 +17,8 @@ if __name__ == '__main__':
     e_writer.writerow(["file1", "file2"])
     i_writer.writerow(["file1", "file2"])
     for dir in os.listdir('input'):
+        if not os.path.isdir('input/' + dir):
+            continue
         sample_list = sample_generator('input/' + dir + '/stdin_format.txt' , sample_num)
         result_table  = []
         print("Working on " + 'input/' + dir)
