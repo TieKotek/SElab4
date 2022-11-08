@@ -52,7 +52,7 @@ use_hash = True #若为True，将用hash码进行等价性判断，否则将用�
 
 创建新仓库后，添加了一些基本的文件，并进行首次git提交：
 
-![首次commit](/images/首次commit.png)
+![首次commit](/images/first_commit.png)
 
 随后我们进行分支，对每个子模块进行开发，从sample_generator开始：
 
@@ -60,13 +60,13 @@ use_hash = True #若为True，将用hash码进行等价性判断，否则将用�
 
 该模块开发完毕并充分测试其正确性后，将其合并到master分支：
 
-![](/images/git merge.png)
+![](/images/git_merge.png)
 
 同理，对execute模块创建独立分支并且在完成后合并到master分支：
 
 ![execute](/images/execute.png)
 
-![merge execute](/images/merge execute.png)
+![merge execute](/images/merge_execute.png)
 
 最后，直接在master分支上对main模块进行开发：
 
@@ -74,15 +74,15 @@ use_hash = True #若为True，将用hash码进行等价性判断，否则将用�
 
 在后续调试过程中，发现了一些bug并且进行了修改，调用git diff命令查看工作区和暂存区修改的部分：
 
-![git diff](/images/git diff.png)
+![git diff](/images/git_diff.png)
 
 下面我们展示git reset的用法：
 
-![add useless](/images/add useless.png)
+![add useless](/images/add_useless.png)
 
 上图中我们创建了一个为无用的文件，并进行commit。
 
-![git reset](/images/git reset.png)
+![git reset](/images/git_reset.png)
 
 使用git reset将暂存区回到上一个版本。
 
